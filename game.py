@@ -21,6 +21,10 @@ for card in range(0,2):
 
 def calculate_score(list_of_cards):
     """returns the sum of all the cards in the List as the score"""
-    cards_sum = 0
-    sum(list_of_cards)
-    return cards_sum
+    if sum(list_of_cards) == 21 and len(list_of_cards) == 2:
+        return 0
+    if 11 in list_of_cards and sum(list_of_cards) > 21:
+        list_of_cards.remove(11)
+        list_of_cards.append(1)
+    return sum(list_of_cards)
+
