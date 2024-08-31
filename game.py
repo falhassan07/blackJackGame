@@ -19,6 +19,7 @@ def calculate_score(list_of_cards):
     return sum(list_of_cards)
 
 def compare(u_score, c_score):
+    """Compares scores of user and computer to determine the winner."""
     if u_score == c_score:
         return "Draw.🙃"
     elif c_score == 0:
@@ -36,6 +37,7 @@ def compare(u_score, c_score):
 
 
 def play_game():
+    """Main call to the game. Initializes the game."""
     print(logo)
     user_cards = []
     computer_cards = []
@@ -43,7 +45,7 @@ def play_game():
     computer_score = -1
     is_game_over = False
 
-    for card in range(0,2):
+    for _ in range(0,2):
         user_cards.append(deal_card())
         computer_cards.append(deal_card())
 
