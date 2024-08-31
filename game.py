@@ -13,6 +13,9 @@ def deal_card():
 
 user_cards = []
 computer_cards = []
+user_score = -1
+computer_score = -1
+is_game_over = False
 
 for card in range(0,2):
     user_cards.append(deal_card())
@@ -27,4 +30,43 @@ def calculate_score(list_of_cards):
         list_of_cards.remove(11)
         list_of_cards.append(1)
     return sum(list_of_cards)
+
+def compare(u_score, c_score):
+    if u_score == c_score:
+        return "Draw"
+    elif c_score == 0:
+        return "You Lose. Computer has blackjack"
+    elif u_score == 0:
+        return "You win with a blackjack"
+    elif u_score > 21:
+        return "You went over. You lose"
+    elif c_score > 21:
+        return "Computer went over. You win"
+    elif u_score > c_score:
+        return "You win"
+
+
+
+while not is_game_over:
+
+    user_score = calculate_score(user_cards)
+    computer_score = calculate_score(computer_cards)
+
+    if user_score == 0 or computer_score == 0 or user_score > 21:
+        is_game_over = True
+    else:
+        another_card = input(f"Type 'y' to get another card, type 'n' to pass: ").lower()
+        if another_card == 'y':
+            user_cards.append(deal_card())
+        else:
+            is_game_over = True
+
+while computer_score != 0 and computer_score < 17:
+    computer_cards.appeend(deal_card())
+    computer_score = calculate_score(computer_cards)
+
+
+restart = input("Do you want to play a game of blackjack. 'y' for yes or 'n' for 'no'").lower()
+if restart == "y":
+    print("\n"*20)
 
